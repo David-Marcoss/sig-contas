@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,42 +8,39 @@ datasource db {
 }
 
 model User {
-  id  String @id @default(uuid())
-  nome String 
+  id       String     @id @default(uuid())
+  nome     String
   telefone String
-  salario Float
-  contas Contas[]
+  salario  Float
+  contas   Contas[]
   poupanca Poupanca[]
 
   @@map("users")
 }
 
-model Contas{
-  id           String @id @default(uuid())
-  nome         String 
-  categoria    String
-  valor        Float
-  User         User? @relation(fields: [userId], references: [id])
-  userId       String?
-  created_at   DateTime @default(now())
-  updated_at   DateTime @updatedAt
-  
-  
-  @@map("contas")
+model Contas {
+  id         String   @id @default(uuid())
+  nome       String
+  categoria  String
+  valor      Float
+  userId     String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  User       User?    @relation(fields: [userId], references: [id])
 
+  @@map("contas")
 }
 
-model Poupanca{
-  id            String @id @default(uuid())
-  nome          String 
-  descricao     String
-  saldo         Float
-  objetivo      Float
-  User          User? @relation(fields: [userId], references: [id])
-  userId        String?
-  created_at    DateTime @default(now())
-  updated_at    DateTime @updatedAt
-  
-  @@map("poupanca")
+model Poupanca {
+  id         String   @id @default(uuid())
+  nome       String
+  descricao  String
+  saldo      Float
+  objetivo   Float
+  userId     String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  User       User?    @relation(fields: [userId], references: [id])
 
+  @@map("poupanca")
 }
