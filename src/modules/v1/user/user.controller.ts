@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  ValidationPipe,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDto } from './dto/create-user.dto';
 import { UpdateUserDTO } from './dto/update-user.dto';
@@ -23,7 +32,10 @@ export class UserController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body(new ValidationPipe()) data: UpdateUserDTO) {
+  async update(
+    @Param('id') id: string,
+    @Body(new ValidationPipe()) data: UpdateUserDTO,
+  ) {
     return this.userService.update.execute(id, data);
   }
 
@@ -31,5 +43,4 @@ export class UserController {
   async remove(@Param('id') id: string) {
     return this.userService.delete.execute(id);
   }
-
 }

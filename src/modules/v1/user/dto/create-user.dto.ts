@@ -3,8 +3,8 @@
 import { IsString, IsNotEmpty, IsNumber, IsPhoneNumber, IsOptional } from 'class-validator';
 
 export class UserDto {
-  @IsOptional()
   @IsString()
+  @IsOptional()
   id: string;
 
   @IsNotEmpty()
